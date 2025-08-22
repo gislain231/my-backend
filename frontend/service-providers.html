@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose a Service Provider - GreenShare</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .providers-section { padding: 4rem 2rem; background: #f6fff2; }
+        .providers-title { text-align: center; font-size: 2.2rem; color: #234d20; margin-bottom: 2rem; }
+        .providers-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+        .provider-card { background: white; border-radius: 18px; box-shadow: 0 6px 24px rgba(86,171,47,0.10); padding: 2rem; border: 1px solid #eafde6; display: flex; flex-direction: column; align-items: center; }
+        .provider-card img { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem; border: 3px solid #a8e063; }
+        .provider-card h4 { margin: 0.5rem 0 0.2rem; color: #234d20; font-size: 1.2rem; }
+        .provider-card .rating { color: #56ab2f; margin-bottom: 0.5rem; }
+        .provider-card .service-type { font-size: 0.95rem; color: #4a7c59; margin-bottom: 1rem; }
+        .provider-card .btn { margin-top: 0.5rem; }
+        
+        .booking-modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); }
+        .booking-content { background: white; margin: 2% auto; padding: 2rem; border-radius: 20px; width: 90%; max-width: 600px; max-height: 90vh; overflow-y: auto; }
+        .booking-steps { display: flex; justify-content: space-between; margin-bottom: 2rem; }
+        .step { flex: 1; text-align: center; padding: 1rem; border-bottom: 3px solid #e0e0e0; }
+        .step.active { border-bottom-color: #56ab2f; color: #56ab2f; }
+        .step.completed { border-bottom-color: #a8e063; color: #a8e063; }
+        .booking-form { display: none; }
+        .booking-form.active { display: block; }
+        .payment-methods { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1rem 0; }
+        .payment-method { border: 2px solid #e0e0e0; border-radius: 10px; padding: 1rem; cursor: pointer; text-align: center; }
+        .payment-method.selected { border-color: #56ab2f; background: #f0f8f0; }
+        .confirmation-summary { background: #f8fff8; border: 1px solid #a8e063; border-radius: 10px; padding: 1.5rem; margin: 1rem 0; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-leaf"></i>
+                <span>GreenShare</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="index.html" onclick="logout()">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <section class="providers-section">
+        <h2 class="providers-title">Choose a Service Provider</h2>
+        <h3>Car Sharing & Rental Providers</h3>
+        <div class="providers-list">
+            <div class="provider-card">
+                <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" alt="EcoCar Rentals">
+                <h4>EcoCar Rentals</h4>
+                <div class="service-type">Hybrid & Electric Car Rental</div>
+                <div class="rating">★★★★★ (4.9)</div>
+                <button class="btn btn-primary" onclick="selectProvider('EcoCar Rentals', 'Hybrid & Electric Car Rental', 89.99)">Select</button>
+            </div>
+            <div class="provider-card">
+                <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=400&q=80" alt="Green Wheels">
+                <h4>Green Wheels</h4>
+                <div class="service-type">Car Sharing & Community Rides</div>
+                <div class="rating">★★★★☆ (4.7)</div>
+                <button class="btn btn-primary" onclick="selectProvider('Green Wheels', 'Car Sharing & Community Rides', 45.99)">Select</button>
+            </div>
+            <div class="provider-card">
+                <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="SmileShare">
+                <h4>SmileShare</h4>
+                <div class="service-type">People Carpooling</div>
+                <div class="rating">★★★★☆ (4.6)</div>
+                <button class="btn btn-primary" onclick="selectProvider('SmileShare', 'People Carpooling', 25.99)">Select</button>
+            </div>
+        </div>
+        <h3 style="margin-top:3rem;">Car Detailing Providers</h3>
+        <div class="providers-list">
+            <div class="provider-card">
+                <img src="https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80" alt="EcoClean Detailing">
+                <h4>EcoClean Detailing</h4>
+                <div class="service-type">Biodegradable Products</div>
+                <div class="rating">★★★★★ (5.0)</div>
+                <button class="btn btn-primary" onclick="selectProvider('EcoClean Detailing', 'Biodegradable Products', 129.99)">Select</button>
+            </div>
+            <div class="provider-card">
+                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="NatureShine">
+                <h4>NatureShine</h4>
+                <div class="service-type">Mobile Eco Detailing</div>
+                <div class="rating">★★★★☆ (4.8)</div>
+                <button class="btn btn-primary" onclick="selectProvider('NatureShine', 'Mobile Eco Detailing', 99.99)">Select</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="providers-section" id="bus">
+        <h2 class="providers-title">Bus Agencies - Available Bus Seats</h2>
+        <div class="providers-list">
+            <div class="provider-card">
+                <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=400&q=80" alt="Green Bus Agency">
+                <div class="provider-info">
+                    <h3>Green Bus Agency</h3>
+                    <p>Route: City Center → EcoTown</p>
+                    <p>Available Seats: 12</p>
+                    <p>Departure: 09:00 AM</p>
+                    <button class="btn btn-primary">Book a Seat</button>
+                </div>
+            </div>
+            <div class="provider-card">
+                <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="NatureLine Buses">
+                <div class="provider-info">
+                    <h3>NatureLine Buses</h3>
+                    <p>Route: GreenVille → Metro City</p>
+                    <p>Available Seats: 7</p>
+                    <p>Departure: 12:30 PM</p>
+                    <button class="btn btn-primary">Book a Seat</button>
+                </div>
+            </div>
+            <div class="provider-card">
+                <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=400&q=80" alt="EcoExpress">
+                <div class="provider-info">
+                    <h3>EcoExpress</h3>
+                    <p>Route: Downtown → Riverside</p>
+                    <p>Available Seats: 5</p>
+                    <p>Departure: 04:00 PM</p>
+                    <button class="btn btn-primary">Book a Seat</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="booking-modal">
+        <div class="booking-content">
+            <span class="close" onclick="closeBookingModal()">&times;</span>
+            <h2>Complete Your Booking</h2>
+            
+            <div class="booking-steps">
+                <div class="step active" id="step1">1. Details</div>
+                <div class="step" id="step2">2. Payment</div>
+                <div class="step" id="step3">3. Confirm</div>
+            </div>
+
+            <!-- Step 1: User Details -->
+            <div class="booking-form active" id="detailsForm">
+                <h3>Your Details</h3>
+                <div class="form-group">
+                    <label for="fullName">Full Name *</label>
+                    <input type="text" id="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone *</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <textarea id="address" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="serviceDate">Preferred Date *</label>
+                    <input type="date" id="serviceDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="specialRequests">Special Requests</label>
+                    <textarea id="specialRequests" rows="3" placeholder="Any special requirements or notes..."></textarea>
+                </div>
+                <button class="btn btn-primary" onclick="nextStep(2)">Next: Payment</button>
+            </div>
+
+            <!-- Step 2: Payment Method -->
+            <div class="booking-form" id="paymentForm">
+                <h3>Payment Method</h3>
+                <div class="payment-methods">
+                    <div class="payment-method" onclick="selectPayment('card')">
+                        <i class="fas fa-credit-card fa-2x"></i>
+                        <h4>Credit/Debit Card</h4>
+                    </div>
+                    <div class="payment-method" onclick="selectPayment('paypal')">
+                        <i class="fab fa-paypal fa-2x"></i>
+                        <h4>PayPal</h4>
+                    </div>
+                    <div class="payment-method" onclick="selectPayment('mobile')">
+                        <i class="fas fa-mobile-alt fa-2x"></i>
+                        <h4>Mobile Money</h4>
+                    </div>
+                </div>
+                
+                <div id="cardDetails" style="display:none;">
+                    <div class="form-group">
+                        <label for="cardNumber">Card Number *</label>
+                        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456">
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label for="expiryDate">Expiry Date *</label>
+                            <input type="text" id="expiryDate" placeholder="MM/YY">
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv">CVV *</label>
+                            <input type="text" id="cvv" placeholder="123">
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                    <button class="btn btn-secondary" onclick="prevStep(1)">Previous</button>
+                    <button class="btn btn-primary" onclick="nextStep(3)">Next: Confirm</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Confirmation -->
+            <div class="booking-form" id="confirmForm">
+                <h3>Confirm Your Booking</h3>
+                <div class="confirmation-summary" id="bookingSummary">
+                    <!-- Summary will be populated here -->
+                </div>
+                <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                    <button class="btn btn-secondary" onclick="prevStep(2)">Previous</button>
+                    <button class="btn btn-primary" onclick="confirmBooking()">Confirm & Pay</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 GreenShare. Sharing rides, helping people, and healing the planet—one journey at a time.</p>
+        </div>
+    </footer>
+
+    <script src="booking-script.js"></script>
+</body>
+</html> 

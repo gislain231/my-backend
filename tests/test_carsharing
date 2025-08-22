@@ -1,0 +1,32 @@
+import pytest
+from datetime import datetime, timedelta
+
+def test_find_available_vehicles(client, test_vehicle, db):
+    """Test finding available vehicles"""
+    start_time = datetime.utcnow() + timedelta(hours=1)
+    end_time = start_time + timedelta(hours=2)
+    
+    response = client.get('/api/carsharing/available', query_string={
+        'start_time': start_time.isoformat(),
+        'end_time': end_time.isoformat(),
+        'lat': 34.0522,
+        'lng': -118.2437
+    })
+    
+    assert response.status_code == 200
+    assert len(response.json) == 1
+    assert response.json[0]['license_plate'] == 'ABC123'
+
+def test_calculate_booking_price(client, test_vehicle):
+    """Test booking price calculation"""
+    start_time = datetime.utcnow()
+    end_time = start_time + timedelta(hours=3)
+    
+    response = client.get('/api/carsharing/calculate-price', query_string={
+        'vehicle_id': test_vehicle.id,
+        'start_time': start_time.isoformat(),
+        'end_time': end_time.isoformat()
+    })
+    
+    assert response.status_code == 200
+    assert response.json['price'] == 30.00  # 3 hours * $10/hour

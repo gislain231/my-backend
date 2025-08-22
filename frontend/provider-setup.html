@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Provider Setup - GreenShare</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .setup-section { padding: 6rem 2rem; background: #f6fff2; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .setup-card { background: white; border-radius: 20px; padding: 3rem; box-shadow: 0 20px 40px rgba(86,171,47,0.15); max-width: 500px; width: 100%; text-align: center; }
+        .setup-title { font-size: 2rem; color: #234d20; margin-bottom: 1rem; }
+        .setup-text { color: #4a7c59; margin-bottom: 2rem; line-height: 1.6; }
+        .form-group { margin-bottom: 1.5rem; text-align: left; }
+        .form-group label { display: block; margin-bottom: 0.5rem; color: #234d20; font-weight: 500; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.8rem; border-radius: 10px; border: 1px solid #e1e5e9; font-size: 1rem; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #56ab2f; }
+        .payment-methods { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
+        .payment-method { flex: 1; border: 2px solid #e0e0e0; border-radius: 10px; padding: 1rem; cursor: pointer; text-align: center; transition: border 0.2s; }
+        .payment-method.selected { border-color: #56ab2f; background: #f0f8f0; }
+        .save-success { background: #eafde6; color: #234d20; border: 1px solid #a8e063; border-radius: 10px; padding: 1.2rem 1rem; margin-bottom: 1.5rem; font-size: 1.1rem; text-align: center; font-weight: 600; display: none; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-leaf"></i>
+                <span>GreenShare</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <section class="setup-section">
+        <div class="setup-card">
+            <h2 class="setup-title">Provider Setup</h2>
+            <p class="setup-text">
+                Welcome! Please set up your preferred payment method and business address to start receiving bookings.
+            </p>
+            <div class="save-success" id="saveSuccessMsg">Your preferences have been saved!</div>
+            <form id="providerSetupForm">
+                <div class="form-group">
+                    <label>Preferred Payment Method *</label>
+                    <div class="payment-methods">
+                        <div class="payment-method" data-method="card" onclick="selectProviderPayment(this)">
+                            <i class="fas fa-credit-card fa-2x"></i><br>Credit/Debit Card
+                        </div>
+                        <div class="payment-method" data-method="paypal" onclick="selectProviderPayment(this)">
+                            <i class="fab fa-paypal fa-2x"></i><br>PayPal
+                        </div>
+                        <div class="payment-method" data-method="mobile" onclick="selectProviderPayment(this)">
+                            <i class="fas fa-mobile-alt fa-2x"></i><br>Mobile Money
+                        </div>
+                    </div>
+                    <input type="hidden" id="providerPaymentMethod" required>
+                </div>
+                <div class="form-group">
+                    <label for="providerAddress">Business Address *</label>
+                    <textarea id="providerAddress" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Save Preferences</button>
+            </form>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 GreenShare. Sharing rides, helping people, and healing the planet—one journey at a time.</p>
+        </div>
+    </footer>
+    <script>
+        function selectProviderPayment(el) {
+            document.querySelectorAll('.payment-method').forEach(pm => pm.classList.remove('selected'));
+            el.classList.add('selected');
+            document.getElementById('providerPaymentMethod').value = el.getAttribute('data-method');
+        }
+        document.getElementById('providerSetupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const payment = document.getElementById('providerPaymentMethod').value;
+            const address = document.getElementById('providerAddress').value;
+            if (!payment || !address) {
+                alert('Please select a payment method and enter your address.');
+                return;
+            }
+            // Save to localStorage (simulate backend)
+            let providerPrefs = JSON.parse(localStorage.getItem('providerPrefs') || '{}');
+            providerPrefs.payment = payment;
+            providerPrefs.address = address;
+            localStorage.setItem('providerPrefs', JSON.stringify(providerPrefs));
+            document.getElementById('saveSuccessMsg').style.display = 'block';
+            setTimeout(() => { document.getElementById('saveSuccessMsg').style.display = 'none'; }, 2500);
+        });
+    </script>
+</body>
+</html> 

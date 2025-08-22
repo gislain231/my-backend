@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register to Continue - GreenShare</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .register-section { 
+            padding: 6rem 2rem; 
+            background: linear-gradient(135deg, #a8e063 0%, #56ab2f 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .register-card { 
+            background: white; 
+            border-radius: 20px; 
+            padding: 3rem; 
+            box-shadow: 0 20px 40px rgba(86,171,47,0.15);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+        .register-icon { 
+            font-size: 4rem; 
+            color: #56ab2f; 
+            margin-bottom: 1rem; 
+        }
+        .register-title { 
+            font-size: 2rem; 
+            color: #234d20; 
+            margin-bottom: 1rem; 
+        }
+        .register-text { 
+            color: #4a7c59; 
+            margin-bottom: 2rem; 
+            line-height: 1.6;
+        }
+        .benefits-list { 
+            text-align: left; 
+            margin: 2rem 0; 
+        }
+        .benefits-list li { 
+            margin: 0.5rem 0; 
+            color: #234d20; 
+        }
+        .benefits-list i { 
+            color: #56ab2f; 
+            margin-right: 0.5rem; 
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-leaf"></i>
+                <span>GreenShare</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="register-section">
+        <div class="register-card">
+            <i class="fas fa-user-plus register-icon"></i>
+            <h2 class="register-title">Join GreenShare to Continue</h2>
+            <p class="register-text">
+                To complete your booking and access our eco-friendly services, 
+                please create a free account with GreenShare.
+            </p>
+            
+            <div class="benefits-list">
+                <h4 style="color: #234d20; margin-bottom: 1rem;">Why Register?</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li><i class="fas fa-check-circle"></i> Complete bookings and payments</li>
+                    <li><i class="fas fa-check-circle"></i> Track your service history</li>
+                    <li><i class="fas fa-check-circle"></i> Receive booking confirmations</li>
+                    <li><i class="fas fa-check-circle"></i> Access exclusive eco-friendly deals</li>
+                    <li><i class="fas fa-check-circle"></i> Join our community of green enthusiasts</li>
+                </ul>
+            </div>
+            
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <button class="btn btn-primary" onclick="goToRegister()">
+                    <i class="fas fa-user-plus"></i> Register Now
+                </button>
+                <button class="btn btn-secondary" onclick="goToLogin()">
+                    <i class="fas fa-sign-in-alt"></i> Already Registered? Login
+                </button>
+            </div>
+            
+            <p style="margin-top: 2rem; font-size: 0.9rem; color: #666;">
+                Registration is free and takes less than 2 minutes.
+            </p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 GreenShare. Sharing rides, helping people, and healing the planet—one journey at a time.</p>
+        </div>
+    </footer>
+
+    <script>
+        function goToRegister() {
+            // Store the intended action for after registration
+            localStorage.setItem('pendingBooking', 'true');
+            window.location.href = 'index.html#register';
+        }
+        
+        function goToLogin() {
+            // Store the intended action for after login
+            localStorage.setItem('pendingBooking', 'true');
+            window.location.href = 'index.html#login';
+        }
+        
+        // Check if user came from booking flow
+        window.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const fromBooking = urlParams.get('from');
+            
+            if (fromBooking === 'booking') {
+                // Show a special message for users coming from booking
+                const title = document.querySelector('.register-title');
+                title.innerHTML = 'Complete Your Booking<br><small style="font-size: 1rem; color: #56ab2f;">Register to continue</small>';
+            }
+        });
+    </script>
+</body>
+</html> 

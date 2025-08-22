@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenShare - Eco Mobility & Community</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-leaf"></i>
+                <span>GreenShare</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#" onclick="openModal('loginModal')">Login</a></li>
+                <li><a href="#" onclick="openModal('registerModal')" class="btn btn-primary">Register</a></li>
+                <li id="providersNav" style="display:none;"><a href="service-providers.html">Providers</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+<section id="home" class="hero">
+    <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Moving background">
+    </div>
+    <div class="hero-content">
+        <h1>Share the Journey, Share the Planet</h1>
+        <p>Join a community that cares. GreenShare helps you rent eco-friendly cars or share rides with others, reducing emissions and building a greener, more connected world. Every ride helps someone—and the planet.</p>
+        <div class="cta-buttons">
+            <a href="#" onclick="openModal('bookingModal')" class="btn btn-primary pulse-animation">
+                <i class="fas fa-seedling"></i> Start Sharing
+            </a>
+            <a href="#services" class="btn btn-secondary">
+                <i class="fas fa-info-circle"></i> Learn More
+            </a>
+        </div>
+    </div>
+</section>
+
+    <!-- Services Section -->
+<section class="services" id="services">
+    <div class="container">
+        <h2>Our Services</h2>
+        <p class="section-subtitle">Choose the service that fits your needs</p>
+        
+        <div class="services-grid">
+            <!-- Car Rental Column -->
+            <div class="service-column">
+                <div class="service-image">
+                    <img src="https://images.pexels.com/photos/112460/pexels-photo-112460.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Car Rental">
+                </div>
+                <h3>Car Rental</h3>
+                <p class="service-description">
+                    Rent a car for your journey. Choose from our fleet of well-maintained vehicles including sedans, SUVs, and electric cars. Perfect for business trips, family vacations, or when you need reliable transportation.
+                </p>
+                <ul class="service-features">
+                    <li>Wide variety of vehicles</li>
+                    <li>Flexible rental periods</li>
+                    <li>24/7 customer support</li>
+                    <li>Insurance included</li>
+                </ul>
+                <button class="btn btn-primary" onclick="openModal('bookingModal')">Rent a Car</button>
+            </div>
+
+            <!-- Ride Sharing Column -->
+            <div class="service-column">
+                <div class="service-image">
+                    <img src="https://images.pexels.com/photos/593172/pexels-photo-593172.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Ride Sharing">
+                </div>
+                <h3>Ride Sharing</h3>
+                <p class="service-description">
+                    Share rides with others going in the same direction. Reduce costs, make new friends, and help the environment by carpooling. Connect with drivers or offer your own vehicle for shared journeys.
+                </p>
+                <ul class="service-features">
+                    <li>Split travel costs</li>
+                    <li>Meet new people</li>
+                    <li>Reduce carbon footprint</li>
+                    <li>Verified drivers & passengers</li>
+                </ul>
+                <button class="btn btn-primary" onclick="openModal('bookingModal')">Find a Ride</button>
+            </div>
+
+            <!-- Bus Reservation Column -->
+            <div class="service-column">
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Bus Reservation">
+                </div>
+                <h3>Bus Reservation</h3>
+                <p class="service-description">
+                    Book seats on buses for intercity and intracity travel. Reserve your spot in advance, choose your preferred seat, and enjoy comfortable, affordable transportation to your destination.
+                </p>
+                <ul class="service-features">
+                    <li>Advance seat booking</li>
+                    <li>Multiple routes available</li>
+                    <li>Comfortable seating</li>
+                    <li>Real-time tracking</li>
+                </ul>
+                <button class="btn btn-primary" onclick="openModal('bookingBusModal')">Book Bus Seat</button>
+            </div>
+
+            <!-- Mobile Wash x Car Detailing Column -->
+            <div class="service-column">
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Mobile Wash x Car Detailing">
+                </div>
+                <h3>Mobile Wash x Car Detailing</h3>
+                <p class="service-description">
+                    Professional car washing and detailing services that come to you. From basic washes to premium detailing packages, we bring the service to your location for maximum convenience.
+                </p>
+                <ul class="service-features">
+                    <li>Mobile service</li>
+                    <li>Eco-friendly products</li>
+                    <li>Professional detailing</li>
+                    <li>Flexible scheduling</li>
+                </ul>
+                <button class="btn btn-primary" onclick="openModal('detailingModal')">Book Detailing</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>Together for a Greener, Kinder World</h2>
+                <p>GreenShare is more than a mobility platform—it's a movement. We believe in sharing, helping others, and protecting the planet. Every time you share a ride or choose an eco-friendly car, you’re making a positive impact on your community and the environment.</p>
+                <p>Our mission is to connect people, reduce emissions, and make cities across Africa and Europe greener and more caring. Join us and be part of the change!</p>
+                <a href="#" onclick="openModal('registerModal')" class="btn btn-primary">Join the Green Movement</a>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Green City Community">
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contact & Community</h2>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 GreenShare. Sharing rides, helping people, and healing the planet—one journey at a time.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <h2>Login</h2>
+            <div class="confirmation-message" id="loginConfirmation"></div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginUserType">I am a</label>
+                    <select id="loginUserType" required>
+                        <option value="customer">Customer</option>
+                        <option value="provider">Provider</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('registerModal')">&times;</span>
+            <h2>Register</h2>
+            <div class="confirmation-message" id="registerConfirmation"></div>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="registerUserType">I am a</label>
+                    <select id="registerUserType" required>
+                        <option value="customer">Customer</option>
+                        <option value="provider">Provider</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="registerName">Full Name / Business Name</label>
+                    <input type="text" id="registerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPhone">Phone</label>
+                    <input type="tel" id="registerPhone" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('bookingModal')">&times;</span>
+            <h2>Book or Share a Ride</h2>
+            <div class="confirmation-message" id="bookingConfirmation"></div>
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label for="bookingType">Service Type</label>
+                    <select id="bookingType" required>
+                        <option value="">Select Service</option>
+                        <option value="eco-car-rental">Car Rental</option>
+                        <option value="ride-sharing">Ride Sharing</option>
+                        <option value="Bus">Bus Reservation</option>
+                        <option value="Car Detailing">Mobile Car Wash</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="pickupLocation">Pickup Location</label>
+                    <input type="text" id="pickupLocation" required>
+                </div>
+                <div class="form-group">
+                    <label for="destination">Destination</label>
+                    <input type="text" id="destination" required>
+                </div>
+                <div class="form-group">
+                    <label for="pickupDate">Pickup Date</label>
+                    <input type="datetime-local" id="pickupDate" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Book/Share Now</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Booking Bus Modal -->
+    <div id="bookingBusModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('bookingBusModal')">&times;</span>
+            <h2>Book a Bus Seat</h2>
+            <div class="confirmation-message" id="bookingConfirmation"></div>
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label for="bookingType">Service Type</label>
+                    <select id="bookingType" required>
+                        <option value="">Select Service</option>
+                        <option value="eco-car-rental">Car Rental</option>
+                        <option value="ride-sharing">Ride Sharing</option>
+                        <option value="Bus">Bus Reservation</option>
+                        <option value="Car Detailing">Mobile Car Wash</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="pickupLocation">Start Point</label>
+                    <input type="text" id="pickupLocation" required>
+                </div>
+                <div class="form-group">
+                    <label for="destination">Destination</label>
+                    <input type="text" id="destination" required>
+                </div>
+                <div class="form-group">
+                    <label for="pickupDate">Date</label>
+                    <input type="datetime-local" id="pickupDate" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Book/Share Now</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Detailing Modal -->
+    <div id="detailingModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('detailingModal')">&times;</span>
+            <h2>Book Eco Detailing</h2>
+            <div class="confirmation-message" id="detailingConfirmation"></div>
+            <form id="detailingForm">
+                <div class="form-group">
+                    <label for="serviceType">Service Type</label>
+                    <select id="serviceType" required>
+                        <option value="">Select Service</option>
+                        <option value="eco-basic-wash">Eco Basic Wash</option>
+                        <option value="eco-full-detail">Eco Full Detail</option>
+                        <option value="interior-only">Interior Only</option>
+                        <option value="exterior-only">Exterior Only</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="vehicleType">Vehicle Type</label>
+                    <input type="text" id="vehicleType" required>
+                </div>
+                <div class="form-group">
+                    <label for="serviceDate">Preferred Date</label>
+                    <input type="date" id="serviceDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="serviceAddress">Service Address</label>
+                    <input type="text" id="serviceAddress" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Book Eco Detailing</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Provider Login Modal -->
+    <div id="providerLoginModal" class="modal" style="display:none;"></div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
