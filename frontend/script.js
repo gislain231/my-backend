@@ -4,7 +4,7 @@ let vehicles = [];
 let services = [];
 
 // API Base URL
-const API_BASE_URL = 'http://127.0.0.1:5000';
+const API_BASE_URL = 'https://reliable-froyo-c764da.netlify.app/';
 
 // DOM Content Loaded
 document.addEventListener('DOMContentLoaded', function() {
