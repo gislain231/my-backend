@@ -11,7 +11,7 @@ class Config:
     FLASK_ENV = os.getenv('FLASK_ENV', 'development')
     
     # Database Configuration
-    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL', 'postgresql+psycopg://username:password@localhost/carsharing')
+    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL', 'postgresql+psycopg://carsharing_db_l2l4_user:s99oGHGa47FolysiBN7KqO4pMBS044Di@dpg-d3377semcj7s73a4feig-a.oregon-postgres.render.com/carsharing_db_l2l4')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ECHO = False  # Set to True for SQL query logging
     
